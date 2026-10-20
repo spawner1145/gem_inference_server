@@ -65,6 +65,21 @@ python -m gem_server doctor
 python -m gem_server serve
 ```
 
+旧环境升级 GPU 检测前，先确认当前任务已结束，再在同一个 Python 环境执行：
+
+```text
+python -m pip uninstall -y onnxruntime
+python -m pip install --force-reinstall --no-deps "onnxruntime-gpu>=1.24.4"
+python -m pip install -r requirements.txt
+python -m gem_server doctor
+```
+
+CPU 版 `onnxruntime` 与 `onnxruntime-gpu` 使用相同的导入模块，混装会互相覆盖。
+虚拟环境若复用了全局包，应把 GPU 版安装到该虚拟环境本身；无需卸载其他项目使用的全局包。
+`doctor` 会实际创建 CUDA 检测会话。所需 CUDA 运行库由 requirements 中的 NVIDIA pip 包提供，
+cuDNN 9 随 CUDA 版 PyTorch 提供；不要求另装完整 CUDA Toolkit，也不要为了检测器更换已有 Torch。
+看到 `CUDAExecutionProvider` 后即可重新启动服务；推理日志也会显示检测器实际使用的后端。
+
 `torch.cuda.is_available()` 应输出 `True`。模型也可以启动 WebUI 后点击下载，约需 7.3 GB 磁盘空间，另预留缓存和输出空间。首次运行 SOMA 的 Warp 内核可能需要编译，耗时会更长。
 
 ### 使用全局环境 / 已有环境
@@ -94,7 +109,7 @@ GEM_PYTHON=/usr/bin/python3 bash start.sh
 - 默认：完整 SAM-3D-Body 图像特征 + GEM 回归 + 官方动作后处理。
 - DDIM：使用官方 50 步采样路径，耗时较长。
 - 关闭图像特征：跳过 SAM-3D-Body，减少运行时间；质量会下降，推荐配合 DDIM。服务不会在失败时偷偷切换成这个模式。
-- 人物检测使用 CPU ONNX Runtime。ViTPose、SAM、GEM 在 CUDA 上依次加载并释放，每个任务结束子进程退出，避免所有模型同时常驻显存。8 GB 显卡建议批大小 **1**。
+- 人物检测使用 GPU 版 ONNX Runtime 的 CUDA 后端。YOLOX、ViTPose、SAM、GEM 依次加载并释放，每个任务结束子进程退出，避免所有模型同时常驻显存。CUDA 检测初始化失败时明确报错，不静默退回 CPU。8 GB 显卡建议批大小 **1**。
 - 视频会等比例缩小到指定最长边，按目标帧率采样，不会提高原视频帧率。从开头最多处理“最大处理帧数”帧；例如 30 FPS、300 帧约 10 秒，10 FPS 则约 30 秒。
 - 默认服务端限制 600 帧、最长边 960 像素、上传 512 MB，可在管理页面调整；插件单次上传上限 512 MB。
 - 同时只执行一个 GPU 任务，其他任务排队。取消会终止当前推理子进程，释放显存。

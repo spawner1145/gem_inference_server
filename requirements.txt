@@ -34,7 +34,9 @@ trimesh>=4.6
 warp-lang>=1.9
 rtree>=1.4
 cholespy>=2.1
-onnxruntime>=1.20
+# CUDA detector. Do not install the CPU onnxruntime package alongside this.
+onnxruntime-gpu[cuda]>=1.24.4
+nvidia-cublas-cu12>=12.0
 safetensors>=0.5
 filelock>=3.16
 scikit-image>=0.25

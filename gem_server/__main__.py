@@ -31,6 +31,14 @@ def main():
             except Exception as exc:
                 failed.append(name)
                 print("FAIL", name, repr(exc))
+        try:
+            from .detector import create_cuda_detector
+            detector = create_cuda_detector(ROOT / "models/inputs/checkpoints/yolox/end2end.onnx")
+            print("OK YOLOX CUDA:", detector.sess.get_providers())
+            del detector
+        except Exception as exc:
+            failed.append("YOLOX CUDA")
+            print("FAIL YOLOX CUDA", repr(exc))
         result = status(ROOT / "models")
         for f in result["files"]:
             print("OK" if f["ready"] else "MISSING", f["path"])

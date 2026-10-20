@@ -92,13 +92,14 @@ def infer(spec):
     progress("解码视频", .02)
     frames, fps = normalize_video(spec["video"], folder / "input.mp4", options)
     length, height, width = frames.shape[:3]
-    from gem.utils.yolox_detector import YOLOXDetector, detect_and_track
+    from gem.utils.yolox_detector import detect_and_track
+    from .detector import create_cuda_detector
     from gem.utils.kp2d_utils import smooth_bbx_xyxy
     from gem.utils.geo_transform import get_bbx_xys_from_xyxy, compute_cam_angvel, compute_cam_tvel
     from gem.utils.cam_utils import estimate_K, get_a_pred_cam
     progress("人物检测与跟踪", .08)
-    # CPU detector saves GPU RAM; the three large neural networks run on CUDA.
-    detector = YOLOXDetector(onnx_path="inputs/checkpoints/yolox/end2end.onnx", device="cpu")
+    # Release the CUDA ONNX session before loading ViTPose/SAM/GEM.
+    detector = create_cuda_detector("inputs/checkpoints/yolox/end2end.onnx")
     boxes, ids = detect_and_track(frames, detector)
     if (ids < 0).all():
         raise ValueError("视频中未检测到人物，请使用清晰、尽量全身可见的单人视频")

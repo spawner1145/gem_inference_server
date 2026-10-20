@@ -15,3 +15,6 @@ The overall server / client organization is inspired by the workspace's Kimodo A
 `vendor/gem_x` contains GEM inference packages/configs and the SOMA / SAM-3D-Body packages at the revisions listed above, with their original licenses and attribution files. `vendor/dinov3` contains the DINOv3 Python package and Hub entry point. No Git metadata, model weights, demos, or datasets are included in this source bundle.
 
 Local integration changes: the two DINOv3 Hub loads in GEM ViTPose and SAM-3D-Body now use the bundled `vendor/dinov3` path with `source="local"`. Their model architecture and checkpoint loading behavior are otherwise retained.
+The server runs the unchanged YOLOX ONNX checkpoint through ONNX Runtime's CUDA
+provider, preloads installed runtime libraries, and rejects failed CUDA
+initialization instead of silently falling back to CPU.
