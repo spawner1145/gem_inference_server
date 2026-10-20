@@ -1,0 +1,17 @@
+{
+  "host": "127.0.0.1",
+  "port": 6700,
+  "max_upload_mb": 512,
+  "max_frames": 600,
+  "max_edge": 960,
+  "defaults": {
+    "mode": "regression",
+    "image_features": true,
+    "batch_size": 1,
+    "max_frames": 300,
+    "target_fps": 30,
+    "max_edge": 720,
+    "seed": 42,
+    "postprocess": true
+  }
+}

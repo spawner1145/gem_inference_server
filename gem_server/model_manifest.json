@@ -1,0 +1,100 @@
+{
+  "inputs/pretrained/gem_soma.ckpt": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "gem_soma.ckpt",
+    "size": 541758499,
+    "sha256": "4c1f85ca8c1e11e6588aead49fbc024bf660708def670043e0b537c101ee298e"
+  },
+  "inputs/checkpoints/vitpose/vitpose.pth": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "vitpose.pth",
+    "size": 3388483384,
+    "sha256": "8e3eec71dbd6bb745eba8c6debe3e4b97bcfd1d01f300099f2eedf50b9a80c8e"
+  },
+  "inputs/checkpoints/sam-3d-body-dinov3/sam3d_body.ckpt": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "sam3d_body.ckpt",
+    "size": 2109129346,
+    "sha256": "b5a2f9d305dd02626b967aa2e86021fba07065df66ce7a7e00ffb9664f150abf"
+  },
+  "inputs/checkpoints/sam-3d-body-dinov3/model_config.yaml": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "model_config.yaml",
+    "size": 1488,
+    "sha256": null
+  },
+  "inputs/mhr_data/mhr_model.pt": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "mhr_model.pt",
+    "size": 696110248,
+    "sha256": "352e271a6c42729c68554ceaea0c955e866970160c31e35506d782dc0f7377bc"
+  },
+  "inputs/soma_data/scale_mean.pth": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "scale_mean.pth",
+    "size": 1451,
+    "sha256": "f696a0793217f27fcf23fa1fd63e8a34aa74ef64580078698fb9ea7322ce2891"
+  },
+  "inputs/soma_data/scale_comps.pth": {
+    "repo": "nvidia/GEM-X",
+    "revision": "5b9a69d5ed4713ac4ba2a63b335e66db87279a3e",
+    "file": "scale_comps.pth",
+    "size": 8816,
+    "sha256": "4c4861384b176fbe3d3bd7480e87ff8161f19553bf6ec1b718bc9b6bbb559cd6"
+  },
+  "inputs/soma_assets/SOMA_neutral.npz": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "SOMA_neutral.npz",
+    "size": 27488638,
+    "sha256": "515f7d5bb74be4e370e9adf5e779760ec3581556374c0b33212a32d13ab3b53f"
+  },
+  "inputs/soma_assets/correctives_model.pt": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "correctives_model.pt",
+    "size": 95437256,
+    "sha256": "3b0f82928dc25c952e0a23af59dbc9c02854ccb4c4c1c988f70bbffd7c284636"
+  },
+  "inputs/soma_assets/MHR/mhr_model_lod6.pt": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "MHR/mhr_model_lod6.pt",
+    "size": 2080751,
+    "sha256": "28839b7ee0eb38eb3943cf26cff61a306de78f86227a0f17bb044252c7bc06ac"
+  },
+  "inputs/soma_assets/MHR/base_body_lod6.obj": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "MHR/base_body_lod6.obj",
+    "size": 39006,
+    "sha256": null
+  },
+  "inputs/soma_assets/MHR/SOMA_wrap_lod1.obj": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "MHR/SOMA_wrap_lod1.obj",
+    "size": 1816801,
+    "sha256": null
+  },
+  "inputs/soma_assets/MHR/base_body_lod1.obj": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "MHR/base_body_lod1.obj",
+    "size": 2277452,
+    "sha256": null
+  },
+  "inputs/soma_assets/README.md": {
+    "repo": "nvidia/soma-x",
+    "revision": "6db1b4e8d737db240e680ca5358ae2897f2d9427",
+    "file": "README.md",
+    "size": 24633,
+    "sha256": null
+  }
+}
